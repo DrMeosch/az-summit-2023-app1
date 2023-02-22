@@ -6,13 +6,25 @@
 trigger:
 - master
 
+
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    endpoint: 'DrMeosch (6)'
+    name: DrMeosch/az-summit-2023-templates
+    ref: refs/heads/develop
+
+
 pool:
   vmImage: 'windows-latest'
+
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+
 
 steps:
 - task: NuGetToolInstaller@1
@@ -28,7 +40,4 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+- template: sample-template.yml@templates
