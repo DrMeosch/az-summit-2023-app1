@@ -6,6 +6,14 @@
 trigger:
 - master
 
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    endpoint: 'DrMeosch (6)'
+    name: DrMeosch/az-summit-2023-templates
+    ref: refs/heads/develop
+
 pool:
   vmImage: ubuntu-latest
 
@@ -17,3 +25,5 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- template: sample-template.yml@templates
