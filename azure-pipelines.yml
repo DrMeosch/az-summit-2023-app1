@@ -60,6 +60,6 @@ stages:
 
 - template: pipelines/az-summit-2023-app1/main-pipeline.yml@templates
   parameters:
-    vEnvironments:
+    environments:
     - Acceptance
     - Integration
