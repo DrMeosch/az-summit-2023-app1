@@ -13,7 +13,13 @@ resources:
     type: github
     endpoint: 'DrMeosch (6)'
     name: DrMeosch/az-summit-2023-templates
-    ref: refs/heads/develop
+    ref: refs/heads/master
+
+  - repository: configurations
+    type: github
+    endpoint: 'DrMeosch (6)'
+    name: DrMeosch/az-summit-2023-configurations
+    ref: refs/heads/master
 
 
 variables:
@@ -23,29 +29,37 @@ variables:
 
 
 stages:
+
 - stage: Build
   jobs:
+
   - job: Build
     pool:
       vmImage: 'windows-latest'
     steps:
+
     - task: NuGetToolInstaller@1
-    
+
     - task: NuGetCommand@2
       inputs:
         restoreSolution: '$(solution)'
-      
+
     - task: VSBuild@1
       inputs:
         solution: '$(solution)'
         msbuildArgs: '/p:SkipInvalidConfigurations=true /p:OutputPath="$(build.artifactStagingDirectory)"'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-    
+
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)\a' # string. Alias: path. Required. File or directory path. Default: $(Pipeline.Workspace).
         publishLocation: 'pipeline'
         artifact: drop
-      
-    - template: sample-template.yml@templates
+
+
+- template: pipelines/az-summit-2023-app1/main-pipeline.yml@templates
+  parameters:
+    vEnvironments:
+    - Acceptance
+    - Integration
