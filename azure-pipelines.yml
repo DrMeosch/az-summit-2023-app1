@@ -57,6 +57,7 @@ variables:
     - name: pipeline_name
       value: Release-$(Release)
 
+name: $(pipeline_name)
 stages:
 
 - stage: Build
