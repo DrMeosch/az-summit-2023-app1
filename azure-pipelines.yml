@@ -92,6 +92,12 @@ stages:
   parameters:
     environments:
     - Acceptance
+    - DevAdvance
+    - DevAdvance2
+    - DevAdvance3
+    - DevAdvance4
     - Integration
+    - Production
+    - Education
     # environments_autodeploy:
     #  - DevAdvance
