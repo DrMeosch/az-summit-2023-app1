@@ -81,6 +81,8 @@ stages:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
+    - powershell: echo $(MajorMinorVersion).$(Revision) > $(Pipeline.Workspace)\a\version.txt
+
     - task: PublishPipelineArtifact@1
       inputs:
         targetPath: '$(Pipeline.Workspace)\a' # string. Alias: path. Required. File or directory path. Default: $(Pipeline.Workspace).
