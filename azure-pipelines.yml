@@ -25,11 +25,9 @@ resources:
     endpoint: 'srvConnGitHub'
     name: DrMeosch/az-summit-2023-configurations
     ref: refs/heads/master
-  #pipelines:
-  #  - pipeline: package
-  #    source: az-summit-2023-app1
-  #    tags:
-  #    - build
+  pipelines:
+    - pipeline: package
+      source: az-summit-2023-app1
 
 variables:
   - name: MajorMinorVersion
