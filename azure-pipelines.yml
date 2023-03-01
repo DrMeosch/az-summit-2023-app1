@@ -88,12 +88,12 @@ stages:
         publishLocation: 'pipeline'
         artifact: drop
 
-    # - task: tagBuildOrRelease@0
-    #   inputs:
-    #     type: 'Build'
-    #     tags: |
-    #       build
-    #       version: $(MajorMinorVersion).$(Revision)
+    - task: tagBuildOrRelease@0
+      inputs:
+        type: 'Build'
+        tags: |
+          build
+          version: $(MajorMinorVersion).$(Revision)
 
 - template: pipelines/az-summit-2023-app1/main-pipeline.yml@templates
   parameters:
