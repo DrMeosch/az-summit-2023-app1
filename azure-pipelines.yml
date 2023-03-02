@@ -73,12 +73,9 @@ stages:
       inputs:
         restoreSolution: '$(solution)'
 
-    - task: VSBuild@1
-      inputs:
-        solution: '$(solution)'
-        msbuildArgs: '/p:SkipInvalidConfigurations=true /p:OutputPath="$(build.artifactStagingDirectory)"'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+    # https://stackoverflow.com/questions/75548945/the-output-option-isnt-supported-when-building-a-solution
+    - powershell: dotnet publish -c Release --property PublishDir=$(Pipeline.Workspace)\a
+      workingDirectory: $(Pipeline.Workspace)\s\src
 
     - powershell: echo $(MajorMinorVersion).$(Revision) > $(Pipeline.Workspace)\a\version.txt
 
